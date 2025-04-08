@@ -2,13 +2,8 @@ package phoenix;
 
 import com.pulumi.Pulumi;
 import com.pulumi.core.Output;
-import com.pulumi.libvirt.Domain;
-import com.pulumi.libvirt.DomainArgs;
 import com.pulumi.libvirt.Provider;
 import com.pulumi.libvirt.ProviderArgs;
-import com.pulumi.libvirt.Volume;
-import com.pulumi.libvirt.VolumeArgs;
-import com.pulumi.libvirt.inputs.DomainDiskArgs;
 
 import phoenix.model.VirtualMachineBuilder;;
 
@@ -23,8 +18,10 @@ public class App {
                     .build()
                 );
             
-            VirtualMachineBuilder vm = new VirtualMachineBuilder("router");
-            vm.build();
+            VirtualMachineBuilder router = new VirtualMachineBuilder("router");
+            router.build();
+
+            VirtualMachineBuilder pc1 = new VirtualMachineBuilder("pc1");
 
             ctx.export("Domain", Output.of("Domain"));
         });
