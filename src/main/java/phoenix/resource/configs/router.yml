@@ -1,0 +1,16 @@
+#cloud-config
+version: 2
+hostname: router
+ssh_pwauth: true
+users:
+- name: ansible
+  gecos: Ansible User
+  groups: users,admin,wheel
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  shell: /bin/bash
+  passwd: $6$rounds=4096$bH7i50ozLkHdLlpq$rprLVY/Xpt7845RAMpno4j4sPPEbgFdb7Ieihsh/JsJ4EMUYLMtrXGeJFjAYwmPz7cb.yvCxU0z5UZlq8WhrV/
+
+chpasswd:
+  list: |
+    ansible:password
+  expire: false
