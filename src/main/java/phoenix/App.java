@@ -27,20 +27,22 @@ public class App {
                 );
 
             // router cloudinit
-             // router config file
+            // router config file
             String routerCloudInit;
             try {
-                routerCloudInit = Files.readString(Paths.get("src/main/resources/router.yml"));
+                routerCloudInit = Files.readString(Paths.get("src/main/java/phoenix/resource/configs/router.yml"));
             } catch (IOException e) {
-                e.printStackTrace();
                 routerCloudInit = "";
             }
             
+            if (routerCloudInit.equals("")) {
+                System.exit(1);
+            }
 
             var volume = new Volume(
             "Alpine Cloud",
                 VolumeArgs.builder()
-                    .source("https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/cloud/nocloud_alpine-3.21.2-x86_64-bios-cloudinit-metal-r0.qcow2")
+                    .source("https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/cloud/nocloud_alpine-3.21.2-x86_64-bios-cloudinit-r0.qcow2")
                     .build()
                 );
 
@@ -57,12 +59,11 @@ public class App {
                     "router_cloudinit",
                     CloudinitDiskArgs.builder()
                         .userData(routerCloudInit)
-                        .metaData("instance-id: router\n" + " local-hostname: router")
                         .build()
                 )
             )
             .build();
-
+            
             // webserver
             var pc1 = new PC("Linux 1", new Volume("linux_1_volume", 
             VolumeArgs.builder()
