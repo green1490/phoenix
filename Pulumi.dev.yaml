@@ -1,13 +1,12 @@
 config:
-  libvirt:
-    uri: qemu:///system
-  Webserver:Vcpu: 2
-  Webserver:Memory: 512
+  libvirt:uri: qemu:///system
+  Webserver:Vcpu: "2"
+  Webserver:Memory: "512"
   Webserver:Volume: Alpine
   Webserver:Name: Web
   Webserver:Subnet: 192.168.100.0/24
-  Database:Vcpu: 2
-  Database:Memory: 512
+  Database:Vcpu: "2"
+  Database:Memory: "512"
   Database:Volume: Alpine
   Database:Name: DB
   Database:Subnet: 192.168.200.0/24
