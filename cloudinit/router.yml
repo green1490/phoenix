@@ -1,0 +1,14 @@
+#cloud-config
+hostname: router
+
+users:
+- name: ansible
+  groups: users,admin,wheel
+  sudo: ALL=(ALL) NOPASSWD:ALL
+  lock_passwd: false
+  # must have a password to be able to ssh
+  # cant login in with the password
+  passwd: $1$abP0WKH9$qgrcZ/es9QfZ5HAM1rGEH1
+  ssh_authorized_keys:
+    - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAB+AK9/AAT+N0L/2POpqCtVwOHxP6osZP+nWFaCA1ea5RfThMjyValYc7+X8+2ekvzgQhtdX0q//tIpy/U2BV/N2NY8o6K+ZLVdJk9IVrhv0lrpgCAqvPvTHU4tf6FXGaNE6ybVyNWMTHlMX1RZGeQFNjFzwjIljwEqzxtYYOq5Y6mFdlSBWLL+BYUKyrkalLzX6ZXOQoNZZ/6Hr+osPmgj/0bcPOVhdcUTh2ijMvt6FO1pD/vYi8hzdpXAhHC0UadklABOzxrEoN1NfDaY4EAVNdK0O0JDzUIZXfa315BuhNcXzOW+lLsMM/ba6YP9PrETb97uP8pSY0SahBl6v6BucAKDvw+VZhCpO0O0BFdh15S28xvqMpmPuxUVJfb34zyBY91QiSvHUG4qiibv+0FhMdqM4+Xg36pKowf14hdci6tNP7h+s4JdiXR1w1Zb28ZC2kBn5wlwr35GS07Gd2qK1q9FdW6p1JbpCnVhCJnihUF8yLyMsBsY/s3973GGJx85z6P+hx3JTmcgil6q2NR+eil9VDW0XstahQapELcuha8lDfHKE/k1Z9wdPSr7Hte4kpP3GWjl1UEF6XNzlxOFI9ipkWHUzrM+rtmlaLHJEO7zBzpGqyy7HtYsoK7rXJLl+KSdPB7i+lwYsX6x2ttE7aobQUyBEaosQ== green1490@medusa 
+    
