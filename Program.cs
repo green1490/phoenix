@@ -4,7 +4,7 @@ using Pulumi;
 
 return await Deployment.RunAsync(() =>
 {
-    var config = new Config("phoenix");
+    var config = new Config();
 
     var services = new ServiceCollection()
     .AddOptions()

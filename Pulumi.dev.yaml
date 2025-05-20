@@ -1,19 +1,15 @@
 config:
   libvirt:
     uri: qemu:///system
-    phoenix:
-      Webserver:
-        Vcpu: 2
-        Memory: 512
-        Volume: Alpine
-        Name: Web
-        Subnet: 192.168.100.0/24
-      Database:
-        Vcpu: 2
-        Memory: 512
-        Volume: Alpine
-        Name: DB
-        Subnet: 192.168.200.0/24
-      Alpine:
-        Src: https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/cloud/nocloud_alpine-3.21.2-x86_64-bios-cloudinit-r0.qcow2
-        Name: Alpine
+  Webserver:Vcpu: 2
+  Webserver:Memory: 512
+  Webserver:Volume: Alpine
+  Webserver:Name: Web
+  Webserver:Subnet: 192.168.100.0/24
+  Database:Vcpu: 2
+  Database:Memory: 512
+  Database:Volume: Alpine
+  Database:Name: DB
+  Database:Subnet: 192.168.200.0/24
+  Alpine:Src: https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/cloud/nocloud_alpine-3.21.2-x86_64-bios-cloudinit-r0.qcow2
+  Alpine:Name: Alpine
