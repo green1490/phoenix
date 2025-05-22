@@ -3,18 +3,17 @@ using Microsoft.Extensions.Options;
 
 public class DeviceFactory : IDeviceFactory
 {
-    private readonly IOptionsSnapshot<DeviceConfig> config;
+    private readonly DeviceConfig deviceConfig;
     private readonly IVolumeFactory volumeFactory;
 
-    public DeviceFactory(IOptionsSnapshot<DeviceConfig> config, IVolumeFactory volumeFactory)
+    public DeviceFactory(IOptions<DeviceConfig> config, IVolumeFactory volumeFactory)
     {
-        this.config = config;
+        deviceConfig = config.Value;
         this.volumeFactory = volumeFactory;
     }
 
     public IDevice CreateDevice(string deviceType, string volumeType)
     {
-        var deviceConfig = config.Get(deviceType);
         var volume = volumeFactory.GetVolume(volumeType);
 
         return deviceType switch

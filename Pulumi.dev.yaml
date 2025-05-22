@@ -1,5 +1,5 @@
 config:
-  libvirt:uri: qemu:///system
+  libvirt:uri: qemu:///
   Webserver:Vcpu: "2"
   Webserver:Memory: "512"
   Webserver:Volume: Alpine
