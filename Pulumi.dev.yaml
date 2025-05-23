@@ -12,3 +12,4 @@ config:
   Database:Subnet: 192.168.200.0/24
   Alpine:Src: https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/cloud/nocloud_alpine-3.21.2-x86_64-bios-cloudinit-r0.qcow2
   Alpine:Name: Alpine
+  Cloudinit:Name: Web
