@@ -12,17 +12,16 @@ public class Webserver : IDevice
         this.volume = volume;
     }
 
-    public Domain Start()
+    public void Start()
     {
-    
-        return new Domain(deviceConfig.Name, new DomainArgs
+        _ = new Domain(deviceConfig.Name, new DomainArgs
         {
             Name = deviceConfig.Name,
             Vcpu = deviceConfig.Vcpu,
-            Memory = deviceConfig.Vcpu,
+            Memory = deviceConfig.Memory,
             Disks = new DomainDiskArgs
             {
-                VolumeId = volume.Build().VolumeId
+                VolumeId = volume.GetId()
             },
         });
     }

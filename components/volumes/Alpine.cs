@@ -1,9 +1,11 @@
+using Pulumi;
 using Pulumi.Libvirt;
 
 public class Alpine : IVolume
 {
     private readonly VolumeConfig config;
-    
+    private Volume? volume;
+
     public Alpine(VolumeConfig config)
     {
         this.config = config;
@@ -11,9 +13,14 @@ public class Alpine : IVolume
 
     public Volume Build()
     {
-        return new Volume(config.Name, new VolumeArgs
+        volume = new Volume(config.Name, new VolumeArgs
         {
-            Source = config.Src
+            Source = config.Src,
+            Name = config.Name
         });
+
+        return volume;
     }
+    
+    public Output<string> GetId() => volume!.Id;
 }
