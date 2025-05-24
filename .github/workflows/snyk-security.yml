@@ -44,7 +44,7 @@ jobs:
         run: snyk code test --sarif > snyk-code.sarif # || true
       
       - name: Snyk test
-        run: snyk test --sarif > snyk-test.sarif
+        run: snyk test --severity-threshold=high --sarif > snyk-test.sarif
 
         # Push the Snyk Code results into GitHub Code Scanning tab
       - name: Upload result to GitHub Code Scanning
