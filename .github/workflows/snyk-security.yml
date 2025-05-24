@@ -42,7 +42,12 @@ jobs:
         # Use || true to not fail the pipeline
       - name: Snyk Code test
         run: snyk code test --sarif > snyk-code.sarif # || true
+      
+      - name: Snyk test
+        run: snyk test --sarif > snyk-test.sarif
 
         # Push the Snyk Code results into GitHub Code Scanning tab
       - name: Upload result to GitHub Code Scanning
         uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "*.sarif"
