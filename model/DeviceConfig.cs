@@ -1,5 +1,3 @@
-using Pulumi.Libvirt;
-
 public record DeviceConfig
 {
     public double Vcpu { get; init; }
