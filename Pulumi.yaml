@@ -1,7 +1,7 @@
 name: phoenix
-description: A minimal GitHub Go Pulumi program
+description: A minimal Go Pulumi program
 runtime: go
 config:
   pulumi:tags:
     value:
-      pulumi:template: github-go
+      pulumi:template: go
