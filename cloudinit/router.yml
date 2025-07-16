@@ -1,6 +1,11 @@
 #cloud-config
-ssh_pwauth: True
-chpasswd:
-  list: |
-     root:linux
-  expire: False
+allow_public_ssh_keys: true
+disable_root: true
+
+users:
+   - name: ansible
+   hostname: router
+   shell: /bin/
+   lock_passwd: true
+   ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYrRKXU1Dqp86jd37UK/SMVgEOEjatbTPTYCk48WrRs green1490@medusa

@@ -22,10 +22,20 @@ resource "libvirt_volume" "master" {
   base_volume_id = libvirt_volume.alpine.id
 }
 
+resource "libvirt_network" "router_network" {
+  name = "router_network"
+  addresses = ["10.17.3.0/24"]
+}
+
 resource "libvirt_domain" "router" {
   name = "router"
   disk {
     volume_id = libvirt_volume.master.id
   }
   cloudinit = libvirt_cloudinit_disk.router_cloudinnit.id
+
+  network_interface {
+    network_id = libvirt_network.router_network.id
+    hostname = "router"
+  }
 }
