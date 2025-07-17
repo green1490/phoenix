@@ -11,15 +11,15 @@ resource "libvirt_cloudinit_disk" "router_cloudinnit" {
   user_data = data.template_file.router_data.rendered
 }
 
-# download alpine cloud image
-resource "libvirt_volume" "alpine" {
-  name   = "alpine"
-  source = "https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/cloud/nocloud_alpine-3.22.0-x86_64-bios-cloudinit-r0.qcow2"
+# download opensuse cloud image
+resource "libvirt_volume" "opensuse" {
+  name   = "opensuse"
+  source = "https://download.opensuse.org/tumbleweed/appliances/openSUSE-MicroOS.x86_64-OpenStack-Cloud.qcow2"
 }
 
 resource "libvirt_volume" "master" {
   name = "master.qcow2"
-  base_volume_id = libvirt_volume.alpine.id
+  base_volume_id = libvirt_volume.opensuse.id
 }
 
 resource "libvirt_network" "router_network" {
