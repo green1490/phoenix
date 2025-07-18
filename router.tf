@@ -14,7 +14,7 @@ resource "libvirt_cloudinit_disk" "router_cloudinnit" {
 # download opensuse cloud image
 resource "libvirt_volume" "opensuse" {
   name   = "opensuse"
-  source = "https://download.opensuse.org/tumbleweed/appliances/openSUSE-MicroOS.x86_64-OpenStack-Cloud.qcow2"
+  source = "/var/lib/libvirt/images/openSUSE.qcow2"
 }
 
 resource "libvirt_volume" "master" {
@@ -24,7 +24,7 @@ resource "libvirt_volume" "master" {
 
 resource "libvirt_network" "router_network" {
   name = "router_network"
-  addresses = ["10.17.3.0/24"]
+  addresses = ["10.0.0.0/8", ]
 }
 
 resource "libvirt_domain" "router" {
@@ -37,5 +37,7 @@ resource "libvirt_domain" "router" {
   network_interface {
     network_id = libvirt_network.router_network.id
     hostname = "router"
+    addresses = [ "10.0.0.50" ]
+    wait_for_lease = true
   }
 }

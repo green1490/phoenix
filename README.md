@@ -1,5 +1,5 @@
 ### Router
-- ip: 10.0.0.1/8
+- ip: 10.0.0.50/8
 
 ### Webserver
 - run nginx
