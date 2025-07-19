@@ -1,7 +1,4 @@
 #cloud-config
-hostname: router
-manage_etc_hosts: 
-
 users:
   - name: ansible
     ssh_authorized_keys:
