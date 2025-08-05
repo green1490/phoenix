@@ -5,6 +5,7 @@ resource "libvirt_volume" "webserver_volume" {
 
 resource "libvirt_domain" "webserver_domain" {
     name = "webserver"
+    vcpu = 1
     disk {
         volume_id = libvirt_volume.webserver_volume.id
     }

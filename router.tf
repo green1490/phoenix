@@ -5,6 +5,7 @@ resource "libvirt_volume" "router_volume" {
 
 resource "libvirt_domain" "router" {
   name = "router"
+  vcpu = 1
   disk {
     volume_id = libvirt_volume.router_volume.id
   }

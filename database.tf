@@ -5,6 +5,7 @@ resource "libvirt_volume" "database_volume" {
 
 resource "libvirt_domain" "name" {
   name = "database"
+  vcpu = 1
   disk {
     volume_id = libvirt_volume.database_volume.id
   }
