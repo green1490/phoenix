@@ -13,7 +13,7 @@ resource "libvirt_domain" "name" {
 
   network_interface {
     network_id = libvirt_network.internal_network.id
-    addresses = [ "192.168.200.1" ]
+    addresses = [ "192.168.150.1" ]
     wait_for_lease = true
   }
 }
