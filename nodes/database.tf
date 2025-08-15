@@ -9,7 +9,7 @@ resource "libvirt_domain" "name" {
   disk {
     volume_id = libvirt_volume.database_volume.id
   }
-  cloudinit = libvirt_cloudinit_disk.cloudinnit.id
+  cloudinit = libvirt_cloudinit_disk.cloudinit.id
 
   network_interface {
     network_id = libvirt_network.internal_network.id

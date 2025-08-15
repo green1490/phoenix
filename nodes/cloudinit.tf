@@ -1,9 +1,8 @@
-data "template_file" "base_data" {
-  template = file("${path.root}/cloudinit/base.yml")
+data "template_file" "agent_cloudinit" {
+  template = file("${path.root}/cloudinit/agent.yml")
 }
 
-
-resource "libvirt_cloudinit_disk" "cloudinnit" {
+resource "libvirt_cloudinit_disk" "cloudinit" {
   name      = "router.iso"
-  user_data = data.template_file.base_data.rendered
+  user_data = data.template_file.agent_cloudinit.rendered
 }

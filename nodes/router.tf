@@ -9,7 +9,7 @@ resource "libvirt_domain" "router" {
   disk {
     volume_id = libvirt_volume.router_volume.id
   }
-  cloudinit = libvirt_cloudinit_disk.cloudinnit.id
+  cloudinit = libvirt_cloudinit_disk.cloudinit.id
 
   # external network
   # NIC 1
