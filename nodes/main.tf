@@ -4,10 +4,5 @@ terraform {
       source = "dmacvicar/libvirt"
       version = "0.8.3"
     }
-
-    kubernetes = {
-      source = "opentofu/kubernetes"
-      version = "2.38.0"
-    }
   }
 }
