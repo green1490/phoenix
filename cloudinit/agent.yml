@@ -4,4 +4,4 @@ users:
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYrRKXU1Dqp86jd37UK/SMVgEOEjatbTPTYCk48WrRs green1490@medusa
 runcmd:
-  curl -sfL https://get.k3s.io | K3S_URL=https://192.168.200.1 sh -
+  curl -sfL https://get.k3s.io | K3S_URL=https://master sh -
