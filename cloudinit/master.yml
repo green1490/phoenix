@@ -3,6 +3,3 @@ users:
   - name: k3s
     ssh_authorized_keys:
       - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYrRKXU1Dqp86jd37UK/SMVgEOEjatbTPTYCk48WrRs green1490@medusa
-
-runcmd:
-  - curl -sfL https://get.k3s.io | sh -

@@ -16,13 +16,20 @@ resource "libvirt_domain" "webserver_domain" {
         hostname = "webserver"
         wait_for_lease = true
     }
+    depends_on = [ 
+        libvirt_domain.master_domain
+     ]
     provisioner "file" {
-    connection {
-        user = "k3s"
-        host = self.network_interface[0].addresses[0]
-        private_key = file("~/.ssh/id_ed25519")
+        connection {
+            user = "k3s"
+            host = self.network_interface[0].addresses[0]
+            private_key = file("~/.ssh/id_ed25519")
+        }
+        source = "/var/lib/rancher/k3s/server/token"
+        destination = "/tmp/token.txt"
     }
-        source = ".env"
-        destination = "/var/lib/rancher/k3s/server/agent-token"
+
+    provisioner "remote-exec" {
+      
     }
 }

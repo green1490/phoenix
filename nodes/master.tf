@@ -17,13 +17,15 @@ resource "libvirt_domain" "master_domain" {
     wait_for_lease = true
   }
 
-  provisioner "file" {
+  provisioner "remote-exec" {
     connection {
-      host = self.network_interface[0].addresses[0]
       user = "k3s"
+      host = "master"
+      type = "ssh"
       private_key = file("~/.ssh/id_ed25519")
     }
-      source = ".env"
-      destination = "/var/lib/rancher/k3s/server/node-token"
+    inline = [ 
+      "curl -sfL https://get.k3s.io | sh -"
+     ]
   }
 }
