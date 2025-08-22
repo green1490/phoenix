@@ -22,7 +22,7 @@ resource "libvirt_domain" "webserver_domain" {
     provisioner "file" {
         connection {
             user = "k3s"
-            host = self.network_interface[0].addresses[0]
+            host = "master"
             private_key = file("~/.ssh/id_ed25519")
         }
         source = "/var/lib/rancher/k3s/server/token"
@@ -30,6 +30,14 @@ resource "libvirt_domain" "webserver_domain" {
     }
 
     provisioner "remote-exec" {
-      
+        connection {
+            type = "ssh"
+            host = "webserver"
+            private_key = file("~/.ssh/id_ed25519")
+            user = "k3s"
+        }
+        inline = [ 
+            "curl -sfL https://get.k3s.io | K3S_URL=$(cat /tmp/token.txt) sh -"
+        ]
     }
 }

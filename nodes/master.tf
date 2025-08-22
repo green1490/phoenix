@@ -20,7 +20,7 @@ resource "libvirt_domain" "master_domain" {
   provisioner "remote-exec" {
     connection {
       user = "k3s"
-      host = "master"
+      host = self.network_interface[0].addresses[0]
       type = "ssh"
       private_key = file("~/.ssh/id_ed25519")
     }
