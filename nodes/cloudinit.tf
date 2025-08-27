@@ -3,6 +3,6 @@ data "template_file" "agent_cloudinit" {
 }
 
 resource "libvirt_cloudinit_disk" "cloudinit" {
-  name      = "router.iso"
+  name      = "cloudinit.iso"
   user_data = data.template_file.agent_cloudinit.rendered
 }

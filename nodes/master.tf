@@ -25,7 +25,10 @@ resource "libvirt_domain" "master_domain" {
       private_key = file("~/.ssh/id_ed25519")
     }
     inline = [ 
-      "curl -sfL https://get.k3s.io | sh -"
+      "curl -sfL https://get.k3s.io | sh -",
+      "echo 'rebooting systemctl'",
+      "sudo systemctl restart k3s",
+      "echo 'finished'"
      ]
   }
 }

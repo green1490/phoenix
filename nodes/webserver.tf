@@ -22,17 +22,18 @@ resource "libvirt_domain" "webserver_domain" {
     provisioner "file" {
         connection {
             user = "k3s"
-            host = "master"
+            host = self.network_interface[0].addresses[0]
             private_key = file("~/.ssh/id_ed25519")
+            type = "ssh"
         }
-        source = "/var/lib/rancher/k3s/server/token"
+        source = "/var/lib/rancher/k3s/server/node-token"
         destination = "/tmp/token.txt"
     }
 
     provisioner "remote-exec" {
         connection {
             type = "ssh"
-            host = "webserver"
+            host = self.network_interface[0].addresses[0]
             private_key = file("~/.ssh/id_ed25519")
             user = "k3s"
         }
