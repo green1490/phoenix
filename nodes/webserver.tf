@@ -3,7 +3,7 @@ resource "libvirt_volume" "webserver_volume" {
     base_volume_id = libvirt_volume.opensuse.id
 }
 
-resource "libvirt_domain" "webserver_domain" {
+resource "libvirt_domain" "webserver" {
     name = "webserver"
     vcpu = 1
     disk {
@@ -16,20 +16,7 @@ resource "libvirt_domain" "webserver_domain" {
         hostname = "webserver"
         wait_for_lease = true
     }
-    depends_on = [ 
-        libvirt_domain.master_domain
-     ]
-    provisioner "file" {
-        connection {
-            user = "k3s"
-            host = self.network_interface[0].addresses[0]
-            private_key = file("~/.ssh/id_ed25519")
-            type = "ssh"
-        }
-        source = "/var/lib/rancher/k3s/server/node-token"
-        destination = "/tmp/token.txt"
-    }
-
+    depends_on = [ libvirt_domain.master ]
     provisioner "remote-exec" {
         connection {
             type = "ssh"
@@ -38,7 +25,7 @@ resource "libvirt_domain" "webserver_domain" {
             user = "k3s"
         }
         inline = [ 
-            "curl -sfL https://get.k3s.io | K3S_URL=$(cat /tmp/token.txt) sh -"
+            "curl -sfL https://get.k3s.io | K3S_URL=https://${libvirt_domain.master.network_interface[0].addresses[0]} K3S_TOKEN=${random_string.k3s_token.result} sh -"
         ]
     }
 }

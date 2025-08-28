@@ -3,7 +3,7 @@ resource "libvirt_volume" "master_volume" {
   base_volume_id = libvirt_volume.opensuse.id
 }
 
-resource "libvirt_domain" "master_domain" {
+resource "libvirt_domain" "master" {
   name = "master"
   description = "Master node of the whole kubernetes cluster"
   vcpu = 2.0
@@ -25,10 +25,7 @@ resource "libvirt_domain" "master_domain" {
       private_key = file("~/.ssh/id_ed25519")
     }
     inline = [ 
-      "curl -sfL https://get.k3s.io | sh -",
-      "echo 'rebooting systemctl'",
-      "sudo systemctl restart k3s",
-      "echo 'finished'"
+      "curl -sfL https://get.k3s.io | K3S_TOKEN=${random_string.k3s_token.result} sh -"
      ]
   }
 }
