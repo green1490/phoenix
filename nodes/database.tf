@@ -1,15 +1,18 @@
 resource "libvirt_volume" "database_volume" {
   name = "database_volume.qcow2"
-  base_volume_id = libvirt_volume.opensuse.id
+  base_volume_id = libvirt_volume.talos.id
 }
 
-resource "libvirt_domain" "name" {
+resource "libvirt_domain" "database" {
   name = "database"
   vcpu = 1
+  cpu {
+    mode = "host-passthrough"
+  }
+  
   disk {
     volume_id = libvirt_volume.database_volume.id
   }
-  cloudinit = libvirt_cloudinit_disk.cloudinit.id
 
   network_interface {
     network_id = libvirt_network.internal_network.id

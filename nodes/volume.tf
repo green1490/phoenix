@@ -1,4 +1,4 @@
-resource "libvirt_volume" "opensuse" {
-  name   = "opensuse"
-  source = "/var/lib/libvirt/images/openSUSE.qcow2"
+resource "libvirt_volume" "talos" {
+  name   = "master.qcow2"
+  source = "/var/lib/libvirt/images/talos.qcow2"
 }

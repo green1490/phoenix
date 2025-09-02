@@ -2,11 +2,6 @@ provider "libvirt" {
     uri = "qemu:///system"
 }
 
-provider "kubernetes" {
-  
-}
+provider "talos" {
 
-
-module "nodes" {
-  source = "./nodes"
 }
