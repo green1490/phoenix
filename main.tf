@@ -11,3 +11,13 @@ terraform {
     }
   }
 }
+
+module "nodes" {
+    source = "./modules/nodes"
+}
+
+module "talos" {
+    source = "./modules/talos"
+    control_plane_ip_adress = module.nodes.master_ip_address[0]
+    depends_on = [ module.nodes ]
+}
