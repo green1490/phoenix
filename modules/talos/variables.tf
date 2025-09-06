@@ -1,7 +1,7 @@
-variable "control_plane_ip_adress" {
+variable "control_plane_ip_address" {
   type = string
 }
 
-variable "agent_ip_adresses" {
+variable "worker_ip_addresses" {
   type = set(string)
 }

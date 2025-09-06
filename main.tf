@@ -18,10 +18,9 @@ module "nodes" {
 
 module "talos" {
     source = "./modules/talos"
-    control_plane_ip_adress = module.nodes.master_ip_address
-    agent_ip_adresses = toset([
+    control_plane_ip_address = module.nodes.master_ip_address
+    worker_ip_addresses = toset([
       module.nodes.database_ip_address,
-      module.nodes.master_ip_address,
       module.nodes.router_ip_adress,
       module.nodes.webserver_ip_address
     ])
