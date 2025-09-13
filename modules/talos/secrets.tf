@@ -1,3 +1,1 @@
-resource "talos_machine_secrets" "this" {
-
-}
+resource "talos_machine_secrets" "secret" {}
