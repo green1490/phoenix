@@ -2,13 +2,28 @@ data "talos_machine_configuration" "control_plane" {
   cluster_name     = "infra"
   machine_type     = "controlplane"
   cluster_endpoint = "https://${var.control_plane_ip_address}:6443"
-  machine_secrets  = talos_machine_secrets.secret.machine_secrets  
+  machine_secrets  = talos_machine_secrets.secret.machine_secrets
+  config_patches = [
+    yamlencode({
+      machine = {
+        network = {
+          interfaces = [
+            {
+              interface = "ens3"
+              dhcp      = true
+            }
+          ]
+        }
+      }
+    })
+  ]
 }
 
 data "talos_client_configuration" "control_plane" {
   cluster_name = "infra"
   client_configuration = talos_machine_secrets.secret.client_configuration
   nodes = [ var.control_plane_ip_address ]
+  endpoints = [ var.control_plane_ip_address ]
 }
 
 resource "talos_machine_configuration_apply" "control_plane" {
